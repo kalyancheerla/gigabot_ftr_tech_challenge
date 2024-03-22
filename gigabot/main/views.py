@@ -5,4 +5,8 @@ def home(request):
     return render(request, "index.html")
 
 def about_us(request):
-    return render(request, "about_us.html")
+    developers = [
+        {'name': 'Kalyan Cheerla', 'bio': 'Project Manager', 'image': 'https://avatars.githubusercontent.com/u/32354220'},
+        {'name': 'Bhavani Rachakatla', 'bio': 'Design and Testing Lead', 'image': 'https://avatars.githubusercontent.com/u/28670100'},
+           ]
+    return render(request, "about_us.html", {'developers': developers})
