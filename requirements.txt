@@ -1,0 +1,4 @@
+openai
+Django
+django-crispy-forms
+crispy-bootstrap5
