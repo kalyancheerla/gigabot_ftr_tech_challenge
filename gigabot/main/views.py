@@ -1,12 +1,15 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from .chatbot import get_chatbot_response
 
 # Chatbot function
-def get_chatbot_response(message):
-    return "You are dumb!"
+#def get_chatbot_response(message):
+#    return "You are dumb!"
 
 # Create your views here.
 def home(request):
     if request.method == "POST":
+        print('here')
         message = request.POST.get('message')
         response = get_chatbot_response(message)
         return JsonResponse({'message': response})
