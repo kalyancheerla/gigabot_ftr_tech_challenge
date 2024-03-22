@@ -3,21 +3,50 @@
 {% block title %}GigaBot Home{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center" style="background-color: #fff; min-height: 84vh;">
+<div class="" style="background-color: #e6f4ff; height: 84vh;">
     <h1>Chatbot Interface</h1>
     <div id="chat-box">
         <!-- Messages will appear here -->
     </div>
+    {% csrf_token %}
     <input type="text" id="user-input" placeholder="Type your message here...">
     <button onclick="sendMessage()">Send</button>
-
-    <script>
-        function sendMessage() {
-            var inputElement = document.getElementById('user-input');
-            var userInput = inputElement.value;
-            console.log("User Input:", userInput);
-            inputElement.value = '';
-        }
-    </script>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    function sendMessage() {
+        var inputElement = document.getElementById('user-input');
+        var userInput = inputElement.value;
+        var chatBox = document.getElementById('chat-box');
+
+        // Make sure the input is not empty
+        if (userInput.trim() === '') {
+            alert('Please enter a message.');
+            return;
+        }
+
+        fetch('{% url 'home' %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                // Include CSRF token as required by Django for POST requests
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: 'message=' + encodeURIComponent(userInput)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Append the user's message to the chat box
+            chatBox.innerHTML += `<p>User: ${userInput}</p>`;
+            // Append the chatbot's response to the chat box
+            chatBox.innerHTML += `<p>Chatbot: ${data.message}</p>`;
+        })
+        .catch(error => console.error('Error:', error));
+
+        // Clear the input field
+        inputElement.value = '';
+    }
+</script>
 {% endblock %}
