@@ -1,1 +1,23 @@
-you r here!
+{% extends 'base.html' %}
+
+{% block title %}GigaBot Home{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="background-color: #fff; min-height: 84vh;">
+    <h1>Chatbot Interface</h1>
+    <div id="chat-box">
+        <!-- Messages will appear here -->
+    </div>
+    <input type="text" id="user-input" placeholder="Type your message here...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function sendMessage() {
+            var inputElement = document.getElementById('user-input');
+            var userInput = inputElement.value;
+            console.log("User Input:", userInput);
+            inputElement.value = '';
+        }
+    </script>
+</div>
+{% endblock %}

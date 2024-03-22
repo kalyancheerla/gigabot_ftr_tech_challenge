@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d9d9d9;">
+    <a class="navbar-brand" href="{% url 'home' %}">
+            {% load static %}
+            <img src={% static "images/frontier-logo.png" %} width="30" height="30" class="d-inline-block align-top" alt="Logo">
+            GigaBot
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse me-lg-3" id="navbarNav">
+        <ul class="navbar-nav ms-lg-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
+            </li>
+        </ul>
+    </div>
+</nav>
