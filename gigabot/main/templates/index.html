@@ -3,14 +3,20 @@
 {% block title %}GigaBot Home{% endblock %}
 
 {% block content %}
-<div class="center" style="background-color: #e6f4ff; height: 84vh;">
-    <h1>Chatbot Interface</h1>
-    <div id="chat-box">
-        <!-- Messages will appear here -->
+<div class="container py-5" style="height: 84vh;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center mb-4">Chatbot Interface</h1>
+            <div id="chat-box" class="border rounded p-3 mb-3" style="height: 300px; overflow-y: scroll;">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="input-group">
+                {% csrf_token %}
+                <input type="text" id="user-input" class="form-control" placeholder="Type your message here...">
+                <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+            </div>
+        </div>
     </div>
-    {% csrf_token %}
-    <input type="text" id="user-input" placeholder="Type your message here...">
-    <button onclick="sendMessage()">Send</button>
 </div>
 {% endblock %}
 
