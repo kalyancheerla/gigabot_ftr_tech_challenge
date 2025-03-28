@@ -20,7 +20,7 @@ def get_chatbot_response(message):
             ],
         )
         output = chat_completion.choices[0].message.content
-        print(output)
+        #print(output)
     except:
         output = "Error in OpenAI API."
 

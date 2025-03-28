@@ -30,9 +30,8 @@ SECRET_KEY = 'django-insecure-4!#jc8)h5s6$re0j6o*!04c(n7%eirkeun*4+iork6r1k@5$$l
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=['localhost', '0.0.0.0'])
 CHATGPT_API_KEY = env("CHATGPT_API_KEY")
-
-ALLOWED_HOSTS = ['localhost', '0.0.0.0']
 
 
 # Application definition
