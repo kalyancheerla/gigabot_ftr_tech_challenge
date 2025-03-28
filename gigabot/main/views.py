@@ -9,7 +9,6 @@ from .chatbot import get_chatbot_response
 # Create your views here.
 def home(request):
     if request.method == "POST":
-        print('here')
         message = request.POST.get('message')
         response = get_chatbot_response(message)
         return JsonResponse({'message': response})

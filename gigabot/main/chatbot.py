@@ -1,25 +1,26 @@
 import os
 from openai import OpenAI
+from django.conf import settings
 
-API_KEY = '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'
+API_KEY = settings.CHATGPT_API_KEY
 
 def get_chatbot_response(message):
     client = OpenAI(
-        # This is the default and can be omitted
         api_key=API_KEY,
     )
 
     try:
         chat_completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
             messages=[
                 {
                     "role": "user",
                     "content": message,
                 }
             ],
-            model="gpt-3.5-turbo",
         )
-        output = chat_completion.message.content
+        output = chat_completion.choices[0].message.content
+        print(output)
     except:
         output = "Error in OpenAI API."
 
